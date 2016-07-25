@@ -78,9 +78,9 @@ public class BankEvaluator extends Script implements FCPaintable, Painting {
 			alive = false;
 		}
 		try {
-			for (RSItem q : currentBank) {
-				bankList.add(q);
-				System.out.println("Loaded: " + RSItemDefinition.get(q.getID()).getName());
+			for (RSItem item : currentBank) {
+				bankList.add(item);
+				System.out.println("Loaded: " + RSItemDefinition.get(item.getID()).getName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
