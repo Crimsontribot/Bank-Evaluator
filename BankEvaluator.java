@@ -160,8 +160,10 @@ public class BankEvaluator extends Script implements FCPaintable, Painting {
 			BufferedWriter bw = new BufferedWriter(fw);
 			file.setWritable(true);
 
-			bw.write("#F2P");
-			bw.newLine();
+			if (f2pItems.size() > 0) {
+				bw.write("#F2P");
+				bw.newLine();
+			}
 
 			for (RSItem item : f2pItems) {
 				int price = getOverallPrice(item.getID());
@@ -172,12 +174,16 @@ public class BankEvaluator extends Script implements FCPaintable, Painting {
 				bw.newLine();
 			}
 
-			bw.newLine();
-			bw.write("#Total F2P: " + NumberFormat.getNumberInstance(Locale.US).format(f2pWealth));
-			bw.newLine();
-			bw.newLine();
-			bw.write("#Members");
-			bw.newLine();
+			if (f2pWealth > 0) {
+				bw.newLine();
+				bw.write("#Total F2P: " + NumberFormat.getNumberInstance(Locale.US).format(f2pWealth));
+				bw.newLine();
+			}
+			if (memberItems.size() > 0) {
+				bw.newLine();
+				bw.write("#Members");
+				bw.newLine();
+			}
 
 			for (RSItem item : memberItems) {
 				int price = getOverallPrice(item.getID());
@@ -188,9 +194,11 @@ public class BankEvaluator extends Script implements FCPaintable, Painting {
 				bw.newLine();
 			}
 
-			bw.newLine();
-			bw.write("#Total Members: " + NumberFormat.getNumberInstance(Locale.US).format(memberWealth));
-			bw.newLine();
+			if (memberWealth > 0) {
+				bw.newLine();
+				bw.write("#Total Members: " + NumberFormat.getNumberInstance(Locale.US).format(memberWealth));
+				bw.newLine();
+			}
 			bw.newLine();
 			bw.write("F2P Total: " + NumberFormat.getNumberInstance(Locale.US).format(f2pWealth) + ", Member Total: "
 					+ NumberFormat.getNumberInstance(Locale.US).format(memberWealth) + ", overall: "
